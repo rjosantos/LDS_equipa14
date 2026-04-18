@@ -1,0 +1,104 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\vando\\OneDrive - Universidade Aberta\\6\u00BA Semestre\\Laborat\u00F3rio de Desenvolvimento de Software 2025\\HabitTracker\\HabitTracker\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{2DB422DC-65BB-4E8A-B348-37F5262A7D82}|HabitTracker.csproj|C:\\Users\\vando\\OneDrive - Universidade Aberta\\6\u00BA Semestre\\Laborat\u00F3rio de Desenvolvimento de Software 2025\\HabitTracker\\HabitTracker\\model.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2DB422DC-65BB-4E8A-B348-37F5262A7D82}|HabitTracker.csproj|solutionrelative:model.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2DB422DC-65BB-4E8A-B348-37F5262A7D82}|HabitTracker.csproj|C:\\Users\\vando\\OneDrive - Universidade Aberta\\6\u00BA Semestre\\Laborat\u00F3rio de Desenvolvimento de Software 2025\\HabitTracker\\HabitTracker\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2DB422DC-65BB-4E8A-B348-37F5262A7D82}|HabitTracker.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2DB422DC-65BB-4E8A-B348-37F5262A7D82}|HabitTracker.csproj|C:\\Users\\vando\\OneDrive - Universidade Aberta\\6\u00BA Semestre\\Laborat\u00F3rio de Desenvolvimento de Software 2025\\HabitTracker\\HabitTracker\\controller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2DB422DC-65BB-4E8A-B348-37F5262A7D82}|HabitTracker.csproj|solutionrelative:controller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2DB422DC-65BB-4E8A-B348-37F5262A7D82}|HabitTracker.csproj|c:\\users\\vando\\onedrive - universidade aberta\\6\u00BA semestre\\laborat\u00F3rio de desenvolvimento de software 2025\\habittracker\\habittracker\\view.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2DB422DC-65BB-4E8A-B348-37F5262A7D82}|HabitTracker.csproj|solutionrelative:view.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2DB422DC-65BB-4E8A-B348-37F5262A7D82}|HabitTracker.csproj|C:\\Users\\vando\\OneDrive - Universidade Aberta\\6\u00BA Semestre\\Laborat\u00F3rio de Desenvolvimento de Software 2025\\HabitTracker\\HabitTracker\\habit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2DB422DC-65BB-4E8A-B348-37F5262A7D82}|HabitTracker.csproj|solutionrelative:habit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "View.cs",
+              "DocumentMoniker": "C:\\Users\\vando\\OneDrive - Universidade Aberta\\6\u00BA Semestre\\Laborat\u00F3rio de Desenvolvimento de Software 2025\\HabitTracker\\HabitTracker\\View.cs",
+              "RelativeDocumentMoniker": "View.cs",
+              "ToolTip": "C:\\Users\\vando\\OneDrive - Universidade Aberta\\6\u00BA Semestre\\Laborat\u00F3rio de Desenvolvimento de Software 2025\\HabitTracker\\HabitTracker\\View.cs",
+              "RelativeToolTip": "View.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-17T23:31:53.51Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\vando\\OneDrive - Universidade Aberta\\6\u00BA Semestre\\Laborat\u00F3rio de Desenvolvimento de Software 2025\\HabitTracker\\HabitTracker\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\Users\\vando\\OneDrive - Universidade Aberta\\6\u00BA Semestre\\Laborat\u00F3rio de Desenvolvimento de Software 2025\\HabitTracker\\HabitTracker\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-17T23:31:50.217Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Model.cs",
+              "DocumentMoniker": "C:\\Users\\vando\\OneDrive - Universidade Aberta\\6\u00BA Semestre\\Laborat\u00F3rio de Desenvolvimento de Software 2025\\HabitTracker\\HabitTracker\\Model.cs",
+              "RelativeDocumentMoniker": "Model.cs",
+              "ToolTip": "C:\\Users\\vando\\OneDrive - Universidade Aberta\\6\u00BA Semestre\\Laborat\u00F3rio de Desenvolvimento de Software 2025\\HabitTracker\\HabitTracker\\Model.cs",
+              "RelativeToolTip": "Model.cs",
+              "ViewState": "AgIAAFoAAAAAAAAAAAAowDkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-17T23:31:46.509Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Habit.cs",
+              "DocumentMoniker": "C:\\Users\\vando\\OneDrive - Universidade Aberta\\6\u00BA Semestre\\Laborat\u00F3rio de Desenvolvimento de Software 2025\\HabitTracker\\HabitTracker\\Habit.cs",
+              "RelativeDocumentMoniker": "Habit.cs",
+              "ToolTip": "C:\\Users\\vando\\OneDrive - Universidade Aberta\\6\u00BA Semestre\\Laborat\u00F3rio de Desenvolvimento de Software 2025\\HabitTracker\\HabitTracker\\Habit.cs",
+              "RelativeToolTip": "Habit.cs",
+              "ViewState": "AgIAABIAAAAAAAAAAAAYwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-17T23:31:44.747Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Controller.cs",
+              "DocumentMoniker": "C:\\Users\\vando\\OneDrive - Universidade Aberta\\6\u00BA Semestre\\Laborat\u00F3rio de Desenvolvimento de Software 2025\\HabitTracker\\HabitTracker\\Controller.cs",
+              "RelativeDocumentMoniker": "Controller.cs",
+              "ToolTip": "C:\\Users\\vando\\OneDrive - Universidade Aberta\\6\u00BA Semestre\\Laborat\u00F3rio de Desenvolvimento de Software 2025\\HabitTracker\\HabitTracker\\Controller.cs",
+              "RelativeToolTip": "Controller.cs",
+              "ViewState": "AgIAAGUAAAAAAAAAAAAgwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-17T23:31:40.833Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

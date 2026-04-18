@@ -1,0 +1,108 @@
+using System;
+using System.Collections.Generic;
+using Newtonsoft.Json;
+
+namespace HabitTracker {
+
+    
+    /// Responsável por:
+    ///   - Guardar e carregar a lista de hábitos via Json.NET
+    ///   - Executar a lógica de negócio (adicionar, concluir)
+    ///   - Notificar a View quando os dados mudam (via eventos)
+    
+    /// REGRA: O Model não conhece a View nem o Controller.
+    ///        Comunica apenas através dos eventos declarados abaixo.
+    ///        Nunca instanciar View ou Controller aqui.
+   
+    class Model {
+
+        // ── Estado interno ─────────────────────────────────────────────────
+
+        /// Lista de hábitos em memória.
+        private List<Habit> habitos;
+
+        /// Caminho do ficheiro JSON de persistência.
+        private const string FicheiroJSON = "habitos.json";
+
+        /// Disparado sempre que a lista de hábitos é alterada.
+        /// A View subscreve este evento para se atualizar automaticamente.
+        /// Vinculação feita no Controller: model.ListaFoiAlterada += view.AtualizarLista
+       
+        public delegate void NotificarAlteracao();
+        public event NotificarAlteracao ListaFoiAlterada;
+
+       
+        /// Fornece a lista de hábitos à View quando esta a solicita.
+        /// Usa ref para evitar que a View tenha referência direta ao Model.
+        /// Vinculação feita no Controller: view.PrecisoDaListaDeHabitos += model.SolicitarListaHabitos
+      
+        public void SolicitarListaHabitos(ref List<Habit> lista) {
+            // TODO: atribuir a lista interna de hábitos ao parâmetro ref lista
+            throw new NotImplementedException();
+        }
+
+        /// Inicialização ──────────────────────────────────────────────────
+
+     
+        /// Construtor. Inicializa a lista de hábitos vazia.
+        /// O carregamento do ficheiro é feito em CarregarHabitos().
+       
+        public Model() {
+            // TODO: inicializar a lista de hábitos como lista vazia
+            throw new NotImplementedException();
+        }
+
+        /// Carrega os hábitos do ficheiro JSON para memória.
+        /// Se o ficheiro não existir, mantém a lista vazia (primeira execução).
+    
+        public void CarregarHabitos() {
+            // TODO: verificar se FicheiroJSON existe
+            //       se sim, ler o conteúdo e deserializar com JsonConvert.DeserializeObject
+            //       se não, não fazer nada (lista fica vazia)
+            throw new NotImplementedException();
+        }
+
+        /// Funcionalidades 
+
+        /// Cria um novo hábito e adiciona-o à lista.
+        /// Guarda os dados no ficheiro JSON.
+        /// Notifica a View disparando o evento ListaFoiAlterada.
+       
+        /// <param name="nome">Nome do hábito</param>
+        /// <param name="descricao">Descrição do hábito</param>
+        public void AdicionarHabito(string nome, string descricao) {
+            // TODO: criar novo Habit(nome, descricao)
+            //       adicionar à lista
+            //       chamar GuardarHabitos()
+            //       disparar ListaFoiAlterada?.Invoke()
+            throw new NotImplementedException();
+        }
+
+        
+        /// Marca um hábito como concluído hoje, dado o seu índice na lista.
+        /// Guarda os dados no ficheiro JSON.
+        /// Notifica a View disparando o evento ListaFoiAlterada.
+     
+        /// <param name="indice">Índice do hábito na lista (0-based)</param>
+        public void ConcluirHabito(int indice) {
+            // TODO: verificar se o índice é válido (>=0 e < habitos.Count)
+            //       se inválido, retornar sem fazer nada
+            //       atribuir DateTime.Now a habitos[indice].DataConclusao
+            //       chamar GuardarHabitos()
+            //       disparar ListaFoiAlterada?.Invoke()
+            throw new NotImplementedException();
+        }
+
+        //  Persistência (privado — apenas o Model toca aqui) 
+
+        /// 
+        /// Serializa a lista de hábitos e guarda no ficheiro JSON.
+        /// Usar JsonConvert.SerializeObject com Formatting.Indented.
+        /// 
+        private void GuardarHabitos() {
+            // TODO: serializar a lista com JsonConvert.SerializeObject(habitos, Formatting.Indented)
+            //       guardar o resultado em FicheiroJSON com File.WriteAllText
+            throw new NotImplementedException();
+        }
+    }
+}
