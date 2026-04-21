@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using Newtonsoft.Json;
 
@@ -25,24 +24,6 @@ namespace HabitTracker
             // por motivo de permissão no caminho, ou outro motivo
             string jsonData = JsonConvert.SerializeObject(habitos, Formatting.Indented);
             File.WriteAllText(FicheiroJSON, jsonData);
-        }
-
-        public void TestarData()
-        {
-            Console.WriteLine($"Ficheiro: {Path.GetFullPath(FicheiroJSON)}");
-
-            var testList = new List<Habit>();
-            testList.Add(new Habit { Nome = "habito test 1", Descricao = "desc habito 1" });
-            testList.Add(new Habit { Nome = "habito test 2", Descricao = "desc habito 2" });
-            testList.Add(new Habit { Nome = "habito test 3", Descricao = "desc habito 3" });
-            SalvarHabitos(testList);
-
-            var readHabits = LerHabitos();
-            foreach(var h in readHabits)
-            {
-                Console.WriteLine($" - Nome: {h.Nome} - Desc: {h.Descricao}");
-            }
-            Console.ReadKey(); // pausar execução para ver dados
         }
     }
 }
