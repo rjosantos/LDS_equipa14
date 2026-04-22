@@ -22,7 +22,7 @@ namespace HabitTracker {
         private List<Habit> habitos;
 
         /// Caminho do ficheiro JSON de persistência.
-        private const string FicheiroJSON = "habitos.json";
+        //private const string FicheiroJSON = "habitos.json";  - Tratado no HabitRepository
 
         /// Disparado sempre que a lista de hábitos é alterada.
         /// A View subscreve este evento para se atualizar automaticamente.
