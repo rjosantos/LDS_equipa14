@@ -37,8 +37,9 @@ namespace HabitTracker {
         /// Vinculação feita no Controller: view.PrecisoDaListaDeHabitos += model.SolicitarListaHabitos
       
         public void SolicitarListaHabitos(ref List<Habit> lista) {
-            // TODO: atribuir a lista interna de hábitos ao parâmetro ref lista
-            throw new NotImplementedException();
+            // Devolve a lista de hábitos atual para a View.
+            // Usar ref para evitar que a View tenha referência direta ao Model.
+            lista = new List<Habit>(habitos);
         }
 
         /// Inicialização ──────────────────────────────────────────────────
@@ -48,18 +49,15 @@ namespace HabitTracker {
         /// O carregamento do ficheiro é feito em CarregarHabitos().
        
         public Model() {
-            // TODO: inicializar a lista de hábitos como lista vazia
-            throw new NotImplementedException();
+            habitos = new List<Habit>();
         }
 
         /// Carrega os hábitos do ficheiro JSON para memória.
         /// Se o ficheiro não existir, mantém a lista vazia (primeira execução).
     
         public void CarregarHabitos() {
-            // TODO: verificar se FicheiroJSON existe
-            //       se sim, ler o conteúdo e deserializar com JsonConvert.DeserializeObject
-            //       se não, não fazer nada (lista fica vazia)
-            throw new NotImplementedException();
+            HabitRepository repo = new HabitRepository();
+            habitos = repo.LerHabitos();
         }
 
         /// Funcionalidades 
@@ -71,11 +69,10 @@ namespace HabitTracker {
         /// <param name="nome">Nome do hábito</param>
         /// <param name="descricao">Descrição do hábito</param>
         public void AdicionarHabito(string nome, string descricao) {
-            // TODO: criar novo Habit(nome, descricao)
-            //       adicionar à lista
-            //       chamar GuardarHabitos()
-            //       disparar ListaFoiAlterada?.Invoke()
-            throw new NotImplementedException();
+            Habit novoHabito = new Habit(nome, descricao);
+            habitos.Add(novoHabito);
+            GuardarHabitos();
+            ListaFoiAlterada?.Invoke();
         }
 
         
@@ -85,12 +82,11 @@ namespace HabitTracker {
      
         /// <param name="indice">Índice do hábito na lista (0-based)</param>
         public void ConcluirHabito(int indice) {
-            // TODO: verificar se o índice é válido (>=0 e < habitos.Count)
-            //       se inválido, retornar sem fazer nada
-            //       atribuir DateTime.Now a habitos[indice].DataConclusao
-            //       chamar GuardarHabitos()
-            //       disparar ListaFoiAlterada?.Invoke()
-            throw new NotImplementedException();
+            if (indice >= 0 && indice < habitos.Count) {
+                habitos[indice].DataConclusao = DateTime.Now;
+                GuardarHabitos();
+                ListaFoiAlterada?.Invoke();
+            }
         }
 
         //  Persistência (privado — apenas o Model toca aqui) 
@@ -100,9 +96,8 @@ namespace HabitTracker {
         /// Usar JsonConvert.SerializeObject com Formatting.Indented.
         /// 
         private void GuardarHabitos() {
-            // TODO: serializar a lista com JsonConvert.SerializeObject(habitos, Formatting.Indented)
-            //       guardar o resultado em FicheiroJSON com File.WriteAllText
-            throw new NotImplementedException();
+            HabitRepository repo = new HabitRepository();
+            repo.SalvarHabitos(habitos);
         }
     }
 }

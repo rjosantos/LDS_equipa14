@@ -38,8 +38,9 @@ namespace HabitTracker {
         /// <param name="nome">Nome do hábito</param>
         /// <param name="descricao">Descrição do hábito</param>
         public Habit(string nome, string descricao) {
-            // TODO: inicializar as propriedades Nome, Descricao e DataConclusao
-            throw new NotImplementedException();
+            Nome = nome;
+            Descricao = descricao;
+            DataConclusao = null;
         }
 
         // ── Métodos ────────────────────────────────────────────────────────
@@ -50,8 +51,10 @@ namespace HabitTracker {
         /// 
         /// <returns>True se concluído hoje, False caso contrário</returns>
         public bool ConcluidoHoje() {
-            // TODO: retornar true se DataConclusao tem valor e é de hoje
-            throw new NotImplementedException();
+            if (DataConclusao.HasValue && DataConclusao.Value.Date == DateTime.Today) {
+                return true;
+            }
+            return false;
         }
     }
 }
