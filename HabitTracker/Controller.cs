@@ -84,8 +84,31 @@ namespace HabitTracker {
             //           "2" → disparar MostrarSelecaoHabito()
             //           "0" → emExecucao = false
             //           default → view.MostrarErro("Opção inválida.")
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
+           
+            bool emExecucao = true;
+            while (emExecucao)
+            {
+                MostrarMenu?.Invoke();
+                string opcao = Console.ReadLine();
+                switch (opcao)
+                {
+                    case "1":
+                        MostrarFormularioNovoHabito?.Invoke();
+                        break;
+                    case "2":
+                        MostrarSelecaoHabito?.Invoke();
+                        break;
+                    case "0":
+                        emExecucao = false;
+                        break;
+                    default:
+                        view.MostrarErro("Opção inválida.");
+                        break;
+                }
+            }
         }
+        
 
         // ── Handlers dos eventos da View
 
