@@ -1,143 +1,197 @@
 using System;
 using System.Collections.Generic;
 
-namespace HabitTracker {
-
-    /// 
-    /// Componente View do padrão MVC 
+namespace HabitTracker
+{
+    /// Componente View do padrão MVC.
     /// Responsável por:
     ///   - Apresentar informação ao utilizador na consola
     ///   - Recolher input do utilizador
-    ///   - Notificar o Controller quando o utilizador age (via eventos)
-    ///   - Ir buscar dados ao Model via evento com ref (sem referência direta)
-    ///
-    /// REGRA: A View não conhece o Controller nem o Model.
-    ///        Nunca instanciar Model ou Controller aqui.
-    ///        Para obter dados do Model, usar o evento PrecisoDaListaDeHabitos.
-    /// 
-    class View {
+    ///   - Notificar o Controller quando o utilizador age
+    ///   - Pedir dados ao Model através de eventos, sem o conhecer diretamente
+    class View
+    {
 
-        // ── Eventos de comunicação com o Model (via ref, sem dependência) ──
+        // ── Eventos de comunicação com o Model ─────────────────────────────
 
-        /// 
-        /// A View dispara este evento quando precisa da lista de hábitos.
-        /// O Model responde preenchendo o parâmetro ref lista.
-        /// Vinculação feita no Controller: view.PrecisoDaListaDeHabitos += model.SolicitarListaHabitos
-        /// 
         public delegate void SolicitacaoListaHabitos(ref List<Habit> lista);
         public event SolicitacaoListaHabitos PrecisoDaListaDeHabitos;
 
-        //  Eventos de input para o Controller 
+        // ── Eventos de input para o Controller ─────────────────────────────
 
-        /// 
-        /// Disparado quando o utilizador submete os dados de um novo hábito.
-        /// Vinculação feita no Controller: view.UtilizadorSubmeteuNovoHabito += AdicionarHabito
-        /// 
         public delegate void PedidoComNomeDescricao(string nome, string descricao);
         public event PedidoComNomeDescricao UtilizadorSubmeteuNovoHabito;
 
-        /// 
-        /// Disparado quando o utilizador seleciona um hábito para concluir.
-        /// O índice passado é 0-based (convertido internamente a partir do número digitado).
-        /// Vinculação feita no Controller: view.UtilizadorSubmeteuConclusao += ConcluirHabito
-        /// 
         public delegate void PedidoComIndice(int indice);
         public event PedidoComIndice UtilizadorSubmeteuConclusao;
 
-        //  Inicialização 
-
-        /// Construtor vazio — a View não inicializa Model nem Controller.
         public View() { }
 
-        // Apresentação do menu
-        /// 
-        /// Limpa a consola e desenha o menu principal com as opções disponíveis.
-        /// Chamado pelo Controller no início de cada ciclo de interação.
-        /// 
-        public void DesenharMenuPrincipal() {
-            // TODO: limpar consola com Console.Clear()
-            //       desenhar o menu com as opções:
-            //         1. Adicionar hábito
-            //         2. Concluir hábito
-            //         0. Sair
-            //       pedir input com Console.Write("Opção: ")
-            throw new NotImplementedException();
+        // ── Menu principal ─────────────────────────────────────────────────
+
+        public void DesenharMenuPrincipal()
+        {
+            Console.Clear();
+
+            Console.WriteLine("=================================");
+            Console.WriteLine("        Habit Tracker");
+            Console.WriteLine("=================================");
+            Console.WriteLine();
+
+            AtualizarLista();
+
+            Console.WriteLine();
+            Console.WriteLine("1 - Adicionar hábito");
+            Console.WriteLine("2 - Concluir hábito");
+            Console.WriteLine("0 - Sair");
+            Console.WriteLine();
+            Console.Write("Opção: ");
         }
 
-        //  Atualização da lista (chamado pelo evento do Model) 
+        // ── Lista de hábitos ───────────────────────────────────────────────
 
-        /// 
-        /// Obtém a lista de hábitos via evento PrecisoDaListaDeHabitos
-        /// e desenha-a na consola.
-        /// Subscrito ao evento Model.ListaFoiAlterada pelo Controller.
-        /// 
-        public void AtualizarLista() {
-            // TODO: declarar List<Habit> lista = null
-            //       disparar PrecisoDaListaDeHabitos?.Invoke(ref lista)
-            //       se lista for null ou vazia, mostrar "(sem hábitos registados)"
-            //       caso contrário, percorrer a lista e mostrar cada hábito com:
-            //         número, [✓] se ConcluidoHoje() ou [ ] se não, Nome e Descricao
-            throw new NotImplementedException();
+        public void AtualizarLista()
+        {
+            List<Habit> lista = ObterListaHabitos();
+
+            Console.WriteLine("── Lista de hábitos ──");
+
+            if (lista == null || lista.Count == 0)
+            {
+                Console.WriteLine("(sem hábitos registados)");
+                return;
+            }
+
+            for (int i = 0; i < lista.Count; i++)
+            {
+                Habit habito = lista[i];
+
+                string estado = habito.ConcluidoHoje() ? "[✓]" : "[ ]";
+
+                Console.WriteLine(
+                    $"{i + 1}. {estado} {habito.Nome} - {habito.Descricao}"
+                );
+            }
         }
 
-        // ── Fluxo: adicionar hábito
+        private List<Habit> ObterListaHabitos()
+        {
+            List<Habit> lista = null;
+            PrecisoDaListaDeHabitos?.Invoke(ref lista);
 
-        /// 
-        /// Pede ao utilizador o nome e descrição do novo hábito.
-        /// Após recolher os dados, dispara UtilizadorSubmeteuNovoHabito.
-        /// Chamado pelo Controller quando o utilizador escolhe a opção 1.
-        /// 
-        public void PedirDadosNovoHabito() {
-            // TODO: mostrar cabeçalho "── Adicionar hábito ──"
-            //       pedir Nome com Console.ReadLine()
-            //       pedir Descrição com Console.ReadLine()
-            //       disparar UtilizadorSubmeteuNovoHabito?.Invoke(nome, descricao)
-            throw new NotImplementedException();
+            if (lista == null)
+            {
+                lista = new List<Habit>();
+            }
+
+            return lista;
         }
 
-        // ── Fluxo: concluir hábito
+        // ── Adicionar hábito ───────────────────────────────────────────────
 
-        /// 
-        /// Mostra a lista atual e pede ao utilizador que selecione um hábito.
-        /// Após recolher a seleção, dispara UtilizadorSubmeteuConclusao.
-        /// Chamado pelo Controller quando o utilizador escolhe a opção 2.
-        /// 
-        public void PedirSelecaoHabito() {
-            // TODO: chamar AtualizarLista() para mostrar a lista
-            //       mostrar cabeçalho "── Concluir hábito ──"
-            //       pedir número do hábito com Console.ReadLine()
-            //       converter para índice 0-based (número digitado - 1)
-            //       se a conversão falhar, chamar MostrarErro("Entrada inválida.")
-            //       caso contrário, disparar UtilizadorSubmeteuConclusao?.Invoke(indice)
-            throw new NotImplementedException();
+        public void PedirDadosNovoHabito()
+        {
+            Console.Clear();
+
+            Console.WriteLine("── Adicionar hábito ──");
+            Console.WriteLine();
+
+            Console.Write("Nome: ");
+            string nome = Console.ReadLine();
+
+            Console.Write("Descrição: ");
+            string descricao = Console.ReadLine();
+
+            if (string.IsNullOrWhiteSpace(nome))
+            {
+                MostrarErro("O nome do hábito não pode estar vazio.");
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(descricao))
+            {
+                MostrarErro("A descrição do hábito não pode estar vazia.");
+                return;
+            }
+
+            UtilizadorSubmeteuNovoHabito?.Invoke(nome.Trim(), descricao.Trim());
         }
 
-        // ── Feedback ───────────────────────────────────────────────────────
+        // ── Concluir hábito ────────────────────────────────────────────────
 
-        /// 
-        /// Mostra uma mensagem de sucesso a verde e aguarda tecla.
-        /// Chamado pelo Controller após operações bem-sucedidas.
-        /// 
-        /// <param name="mensagem">Texto a apresentar</param>
-        public void MostrarSucesso(string mensagem) {
-            // TODO: definir Console.ForegroundColor = ConsoleColor.Green
-            //       escrever "✓ {mensagem}"
-            //       repor Console.ResetColor()
-            //       aguardar tecla com Console.ReadKey()
-            throw new NotImplementedException();
+        public void PedirSelecaoHabito()
+        {
+            Console.Clear();
+
+            Console.WriteLine("── Concluir hábito ──");
+            Console.WriteLine();
+
+            List<Habit> lista = ObterListaHabitos();
+
+            if (lista.Count == 0)
+            {
+                Console.WriteLine("(sem hábitos registados)");
+                MostrarErro("Não existem hábitos para concluir.");
+                return;
+            }
+
+            for (int i = 0; i < lista.Count; i++)
+            {
+                Habit habito = lista[i];
+                string estado = habito.ConcluidoHoje() ? "[✓]" : "[ ]";
+
+                Console.WriteLine(
+                    $"{i + 1}. {estado} {habito.Nome} - {habito.Descricao}"
+                );
+            }
+
+            Console.WriteLine();
+            Console.Write("Número do hábito a concluir: ");
+            string entrada = Console.ReadLine();
+
+            int numeroEscolhido;
+
+            if (!int.TryParse(entrada, out numeroEscolhido))
+            {
+                MostrarErro("Entrada inválida. Deve introduzir um número.");
+                return;
+            }
+
+            int indice = numeroEscolhido - 1;
+
+            if (indice < 0 || indice >= lista.Count)
+            {
+                MostrarErro("O número escolhido não corresponde a nenhum hábito.");
+                return;
+            }
+
+            UtilizadorSubmeteuConclusao?.Invoke(indice);
         }
 
-        /// 
-        /// Mostra uma mensagem de erro a vermelho e aguarda tecla.
-        /// Chamado pelo Controller ou internamente quando o input é inválido.
-        /// 
-        /// <param name="mensagem">Texto a apresentar</param>
-        public void MostrarErro(string mensagem) {
-            // TODO: definir Console.ForegroundColor = ConsoleColor.Red
-            //       escrever "✗ {mensagem}"
-            //       repor Console.ResetColor()
-            //       aguardar tecla com Console.ReadKey()
-            throw new NotImplementedException();
+        // ── Feedback ao utilizador ─────────────────────────────────────────
+
+        public void MostrarSucesso(string mensagem)
+        {
+            Console.WriteLine();
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine($"✓ {mensagem}");
+            Console.ResetColor();
+
+            Console.WriteLine();
+            Console.WriteLine("Prima qualquer tecla para continuar...");
+            Console.ReadKey();
+        }
+
+        public void MostrarErro(string mensagem)
+        {
+            Console.WriteLine();
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine($"✗ {mensagem}");
+            Console.ResetColor();
+
+            Console.WriteLine();
+            Console.WriteLine("Prima qualquer tecla para continuar...");
+            Console.ReadKey();
         }
     }
 }
