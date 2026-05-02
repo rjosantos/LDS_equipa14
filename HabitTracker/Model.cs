@@ -21,6 +21,9 @@ namespace HabitTracker {
         /// Lista de hábitos em memória.
         private List<Habit> habitos;
 
+        /// Repositório para persistência dos hábitos.
+        private HabitRepository repo = new HabitRepository();
+
         /// Caminho do ficheiro JSON de persistência.
         //private const string FicheiroJSON = "habitos.json";  - Tratado no HabitRepository
 
@@ -56,7 +59,6 @@ namespace HabitTracker {
         /// Se o ficheiro não existir, mantém a lista vazia (primeira execução).
     
         public void CarregarHabitos() {
-            HabitRepository repo = new HabitRepository();
             habitos = repo.LerHabitos();
         }
 
@@ -96,7 +98,6 @@ namespace HabitTracker {
         /// Usar JsonConvert.SerializeObject com Formatting.Indented.
         /// 
         private void GuardarHabitos() {
-            HabitRepository repo = new HabitRepository();
             repo.SalvarHabitos(habitos);
         }
     }
