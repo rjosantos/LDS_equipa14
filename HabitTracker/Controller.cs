@@ -121,10 +121,17 @@ namespace HabitTracker {
         private void AdicionarHabito(string nome, string descricao) {
             // TODO: chamar model.AdicionarHabito(nome, descricao)
             //       chamar view.MostrarSucesso("Hábito \"{nome}\" adicionado com sucesso.")
-            //throw new NotImplementedException();
-			model.AdicionarHabito(nome, descricao);
-            view.MostrarSucesso($"Hábito \"{nome}\" adicionado com sucesso.");
-			
+            
+            try
+            {
+                model.AdicionarHabito(nome, descricao);
+                view.MostrarSucesso($"Hábito \"{nome}\" adicionado com sucesso.");
+            }
+            catch (HabitTrackerException ex)
+            {
+                view.MostrarErro($"Erro ao guardar hábito: {ex.Message}");
+            }
+
         }
 
         /// 
@@ -135,10 +142,16 @@ namespace HabitTracker {
         private void ConcluirHabito(int indice) {
             // TODO: chamar model.ConcluirHabito(indice)
             //       chamar view.MostrarSucesso("Hábito marcado como concluído hoje.")
-            //throw new NotImplementedException();
-			model.ConcluirHabito(indice);
-            view.MostrarSucesso("Hábito marcado como concluído hoje.");
-			
+            try
+            {
+                model.ConcluirHabito(indice);
+                view.MostrarSucesso("Hábito marcado como concluído hoje.");
+            }
+            catch (HabitTrackerException ex)
+            {
+                view.MostrarErro($"Erro ao concluir hábito: {ex.Message}");
+            }
+
         }
     }
 }

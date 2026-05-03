@@ -18,12 +18,18 @@ namespace HabitTracker
             return JsonConvert.DeserializeObject<List<Habit>>(json) ?? new List<Habit>();
         }
 
+        
         public void SalvarHabitos(List<Habit> habitos)
         {
-            // TODO: no futuro detectar e tratar de alguma forma caso não se consiga escrever no ficheiro
-            // por motivo de permissão no caminho, ou outro motivo
-            string jsonData = JsonConvert.SerializeObject(habitos, Formatting.Indented);
-            File.WriteAllText(FicheiroJSON, jsonData);
+            try
+            {
+                string json = JsonConvert.SerializeObject(habitos, Formatting.Indented);
+                File.WriteAllText(FicheiroJSON, json);
+            }
+            catch (IOException ex)
+            {
+                throw new HabitTrackerException("Erro ao guardar ficheiro.", ex);
+            }
         }
     }
 }
